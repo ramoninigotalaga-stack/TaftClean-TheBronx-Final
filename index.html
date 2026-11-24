@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008248">
+  <meta name="description" content="TaftClean is a student-built citizen reporting prototype for uncollected garbage around Taft Avenue.">
+  <title>TaftClean | See Trash? Report It.</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="report.html">Report</a>
+        <a href="track.html">Track</a>
+        <a href="faq.html">FAQ</a>
+        <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="about" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">See Trash? Report it,<br class="desktop-break"> Don't Step Over it.</h1>
+        <p>Report uncollected garbage in under a minute</p>
+        <a class="btn btn-primary hero-cta" href="report.html">Report Garbage</a>
+      </div>
+      <div class="hero-art"><img src="assets/hero-garbage.webp" alt="Uncollected garbage bags beside overflowing bins" width="1556" height="1037" fetchpriority="high"></div>
+    </section>
+
+    <section class="container overview" id="how-it-works" aria-labelledby="how-title">
+      <h2 id="how-title">How It Works</h2>
+      <div class="step-grid">
+        <article class="info-card step-card"><strong class="step-number">1</strong><h3>Take a Photo</h3><p>Snap the uncollected garbage</p></article>
+        <article class="info-card step-card"><strong class="step-number">2</strong><h3>Add a Location</h3><p>Tell us the street or Landmark</p></article>
+        <article class="info-card step-card"><strong class="step-number">3</strong><h3>Submit and Track</h3><p>Get a reference number and follow progress</p></article>
+      </div>
+      <div class="section-heading"><h2>Recent Reports</h2><a href="track.html" class="text-link">Track a report <span aria-hidden="true">→</span></a></div>
+      <div class="report-grid" id="recent-reports" aria-live="polite">
+        <article class="info-card recent-card"><img src="assets/overflowing-bin.webp" alt="Overflowing trash bin" width="610" height="458"><div><h3>Overflowing Bin</h3><p>Taft Ave. Near the Corner</p><span class="status-badge status-resolved">Resolved</span></div></article>
+        <article class="info-card recent-card"><img src="assets/illegal-dumping.webp" alt="Trash dumped by the roadside" width="458" height="343"><div><h3>Illegal Dumping</h3><p>Taft Ave. beside the drain</p><span class="status-badge status-review">Under Review</span></div></article>
+        <article class="info-card recent-card"><img src="assets/market-waste.webp" alt="Garbage bags and discarded market packaging" width="922" height="692"><div><h3>Market Waste</h3><p>Taft Ave. Near the stalls</p><span class="status-badge status-assigned">Assigned</span></div></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><h2>About</h2><a href="index.html#about">What is TaftClean</a><a href="index.html#how-it-works">Our Goal</a></div>
+      <div><h2>Links</h2><a href="report.html">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
+      <div><h2>Project</h2><span>Citizen reporting prototype</span><span>WEBDEV • The Bronx</span></div>
+      <div><h2>Contact</h2><a href="report.html">Submit a report</a><span>Classroom demo only</span></div>
+    </div>
+    <p class="footer-note">TaftClean is a student prototype. Reports are stored in your browser, not sent to a city agency.</p>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
