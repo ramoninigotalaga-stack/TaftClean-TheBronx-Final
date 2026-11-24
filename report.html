@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008248">
+  <meta name="description" content="Report uncollected garbage around Taft Avenue with TaftClean.">
+  <title>Report Garbage | TaftClean</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="js/app.js"></script>
+  <script defer src="js/report.js"></script>
+</head>
+<body data-page="report">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a><a href="report.html" aria-current="page">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a><a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page container">
+    <div id="report-flow">
+      <h1 class="page-heading">REPORT GARBAGE</h1>
+      <p class="form-step-label" id="form-step-label" aria-live="polite">Step 1 of 2 — Report details</p>
+      <form id="garbage-form" novalidate>
+        <fieldset class="form-step" id="step-one">
+          <legend class="sr-only">Report details</legend>
+          <div class="field"><label for="email">Email<span class="required">*</span></label><input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-error" maxlength="120" placeholder="example@email.com"><p class="field-error" id="email-error" role="alert"></p></div>
+          <div class="field"><label for="subtype">Garbage Sub Type<span class="required">*</span></label><select id="subtype" name="subtype" required aria-describedby="subtype-error"><option value="">Select garbage type</option><option>Overflowing Bin</option><option>Illegal Dumping</option><option>Market Waste</option><option>Uncollected Household Waste</option><option>Construction Waste</option><option>Other</option></select><p class="field-error" id="subtype-error" role="alert"></p></div>
+          <div class="field"><label for="description">Description<span class="required">*</span></label><textarea id="description" name="description" rows="3" required minlength="15" maxlength="500" aria-describedby="description-error" placeholder="Describe the garbage and what you observed..."></textarea><div class="field-meta"><p class="field-error" id="description-error" role="alert"></p><span id="character-count">0 / 500</span></div></div>
+          <div class="field"><label for="observed">Date Observed<span class="required">*</span></label><input id="observed" name="observed" type="date" required aria-describedby="observed-error"><p class="field-error" id="observed-error" role="alert"></p></div>
+          <div class="field"><label for="street">Barangay/ Street Segment<span class="required">*</span></label><input id="street" name="street" type="text" required minlength="5" maxlength="120" aria-describedby="street-error" placeholder="e.g. Taft Avenue, Barangay 709"><p class="field-error" id="street-error" role="alert"></p></div>
+          <button type="button" class="btn btn-primary btn-block form-next" id="next-step">Next: Add Photo &amp; Submit <span aria-hidden="true">→</span></button>
+        </fieldset>
+
+        <fieldset class="form-step" id="step-two" hidden>
+          <legend class="sr-only">Location details and photo</legend>
+          <div class="field"><label for="landmark">Landmark <span class="optional">(optional)</span></label><input id="landmark" name="landmark" type="text" maxlength="100" aria-describedby="landmark-error" placeholder="e.g. Beside the pedestrian crossing"><p class="field-error" id="landmark-error" role="alert"></p></div>
+          <div class="field"><span class="field-title" id="amount-label">Estimated Amount <span class="optional">(optional)</span></span><div class="amount-choices" role="radiogroup" aria-labelledby="amount-label"><label class="amount-option"><input type="radio" name="amount" value="Small Pile"><span>Small Pile</span></label><label class="amount-option"><input type="radio" name="amount" value="Large Pile"><span>Large Pile</span></label><label class="amount-option"><input type="radio" name="amount" value="Truckload"><span>Truckload</span></label></div></div>
+          <div class="field"><label for="photo">Photo <span class="optional">(optional)</span></label><div class="photo-drop" id="photo-drop"><input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,image/jpeg,image/png" aria-describedby="photo-help photo-error"><div class="photo-placeholder" id="photo-placeholder"><span class="upload-icon" aria-hidden="true">↑</span><strong>Choose or drop a photo here</strong><span id="photo-help">JPG/PNG, max 5MB</span></div><div class="photo-selected" id="photo-selected" hidden><img id="photo-preview" alt="Preview of selected garbage photo"><span id="photo-filename"></span></div></div><div class="photo-actions"><button type="button" id="remove-photo" class="text-link" hidden>Remove photo</button><p class="field-error" id="photo-error" role="alert"></p></div></div>
+          <div class="form-actions"><button type="button" class="btn btn-outline" id="previous-step">← Back</button><button type="submit" class="btn btn-primary" id="submit-report">Submit Report</button></div>
+        </fieldset>
+      </form>
+      <p class="form-note"><span class="required">*</span> Required fields. Your report stays in this browser for this classroom demo.</p>
+    </div>
+
+    <section class="success-view" id="success-view" aria-labelledby="success-heading" hidden>
+      <div class="success-check" aria-hidden="true">✓</div>
+      <h1 id="success-heading" tabindex="-1">Thank you! Your garbage<br class="desktop-break"> report has been<br class="desktop-break"> submitted</h1>
+      <p>Your reference number is...</p>
+      <div class="reference-box"><strong id="success-reference"></strong><button type="button" id="copy-reference" class="copy-button" aria-label="Copy reference number" title="Copy reference number">Copy</button></div>
+      <div class="success-buttons"><a id="track-this-report" class="btn btn-primary" href="track.html">Track this report</a><a class="btn btn-outline" href="index.html">Back to Home</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer simple-footer"><div class="container footer-grid"><div><h2>About</h2><a href="index.html#about">What is TaftClean</a></div><div><h2>Links</h2><a href="report.html">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div><div><h2>Project</h2><span>WEBDEV • The Bronx</span></div><div><h2>Contact</h2><span>Classroom demo only</span></div></div><p class="footer-note">Reports are saved in your browser and are not sent to government agencies.</p></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
