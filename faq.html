@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008248">
+  <meta name="description" content="Frequently asked questions about the TaftClean garbage reporting prototype.">
+  <title>FAQ | TaftClean</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="faq">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+      <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="track.html">Track</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
+        <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+      </nav>
+    </div>
+  </header>
+  <main class="faq-page">
+    <section class="container faq-section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">FAQ</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Who handles garbage collection? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Garbage collection in real life is handled by the responsible local authorities and their service providers. TaftClean is currently a classroom prototype and does not send reports to government offices.</p></details>
+        <details class="faq-item"><summary>How long until my report is reviewed? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Reports submitted to this prototype begin with “Submitted.” You can demonstrate later steps using the tracking page's demo status controls. No official review time is guaranteed.</p></details>
+        <details class="faq-item"><summary>Can I report without a photo? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Yes. A photo is helpful but optional. Required details are your email, garbage type, description, date observed, and street or barangay.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><h2>About</h2><a href="index.html#about">What is TaftClean</a><a href="index.html#how-it-works">Our Goal</a></div>
+      <div><h2>Links</h2><a href="report.html">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
+      <div><h2>Project</h2><span>Citizen reporting prototype</span><span>WEBDEV • The Bronx</span></div>
+      <div><h2>Contact</h2><a href="report.html">Submit a report</a><span>Classroom demo only</span></div>
+    </div>
+    <p class="footer-note">TaftClean is a student prototype. Reports are stored in your browser, not sent to a city agency.</p>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
