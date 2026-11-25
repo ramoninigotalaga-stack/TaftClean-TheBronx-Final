@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#008248">
+  <meta name="description" content="Track a garbage report using its reference number on TaftClean.">
+  <title>Track a Report | TaftClean</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="js/app.js"></script>
+  <script defer src="js/track.js"></script>
+</head>
+<body data-page="track">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+    <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+      <a href="index.html" >Home</a>
+      <a href="report.html" >Report</a>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="track.html" aria-current="page">Track</a>
+      <a href="faq.html" >FAQ</a>
+      <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+    </nav>
+  </div>
+</header>
+  <main id="main-content" class="container track-page">
+    <h1>Track a Report</h1>
+    <form id="track-form" class="search-row" novalidate><div class="search-field"><label for="reference-search" class="sr-only">Reference number</label><input id="reference-search" type="text" name="reference" placeholder="Enter Reference number (e.g. 99-6799)" maxlength="7" autocomplete="off" inputmode="text" aria-describedby="reference-error" aria-invalid="false"><p id="reference-error" class="field-error" role="alert"></p></div><button class="btn btn-primary" type="submit">Search</button></form>
+    <div class="track-empty" id="track-empty" hidden><h2>No matching report found</h2><p>Check the reference number and try again. For a sample, search <button type="button" class="inline-button" id="sample-code">99-6799</button>.</p></div>
+    <section class="tracking-result" id="tracking-result" aria-live="polite" aria-labelledby="result-heading">
+      <div class="result-top"><h2 id="result-heading">99-6799</h2><span class="status-badge status-review" id="result-status">Under Review</span></div>
+      <div class="result-details"><p><strong>Sub-type:</strong> <span id="result-subtype">Illegal Dumping</span></p><p><strong>Location:</strong> <span id="result-location">Taft Avenue near corner</span></p><p><strong>Date Observed:</strong> <span id="result-date">October 20, 2026</span></p><p id="result-description-row" hidden><strong>Description:</strong> <span id="result-description"></span></p><p id="result-amount-row" hidden><strong>Estimated amount:</strong> <span id="result-amount"></span></p><p id="result-update-row"><strong>Last updated:</strong> <span id="result-updated"></span></p></div>
+      <div class="progress-tracker" id="progress-tracker" role="list" aria-label="Report progress"><div class="progress-stage is-complete" role="listitem"><span class="progress-bar"></span><span>Submitted</span></div><div class="progress-stage is-current" role="listitem"><span class="progress-bar"></span><span>Under Review</span></div><div class="progress-stage" role="listitem"><span class="progress-bar"></span><span>Assigned</span></div><div class="progress-stage" role="listitem"><span class="progress-bar"></span><span>Resolved</span></div></div>
+      <details class="demo-tools" id="demo-tools"><summary>Prototype controls (demo only)</summary><p>Change the status to demonstrate how tracking works. This update is local to your browser.</p><div class="demo-tools-row"><label for="demo-status" class="sr-only">Set report status</label><select id="demo-status"><option>Submitted</option><option>Under Review</option><option>Assigned</option><option>Resolved</option></select><button class="btn btn-primary" id="apply-status" type="button">Update demo status</button></div></details>
+    </section>
+    <p class="dashboard-crosslink">Want to browse sample reports? <a href="dashboard.html">Open the report dashboard</a>.</p>
+    <p class="track-disclaimer">For the classroom prototype, report records and status updates are stored only in your browser.</p>
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-grid">
+    <div><h2>About</h2><a href="about.html">What is TaftClean</a><a href="about.html#how-it-works">How It Works</a><a href="about.html#our-goal">Our Goal</a></div>
+    <div><h2>Pages</h2><a href="report.html">Report</a><a href="dashboard.html">Dashboard</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
+    <div><h2>Help &amp; policies</h2><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="privacy.html#guidelines">Reporting Guidelines</a></div>
+    <div><h2>Project</h2><span>WEBDEV • The Bronx</span><span>Classroom demonstration only</span><span>Not an official collection service</span></div>
+  </div>
+  <p class="footer-note">TaftClean is a student prototype. Reports are saved on this browser, not sent to local authorities. Please do not submit real personal information.</p>
+</footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -10,21 +10,23 @@
   <script defer src="js/app.js"></script>
 </head>
 <body data-page="home">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
-      <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="report.html">Report</a>
-        <a href="track.html">Track</a>
-        <a href="faq.html">FAQ</a>
-        <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
-      </nav>
-    </div>
-  </header>
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+    <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="report.html" >Report</a>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="track.html" >Track</a>
+      <a href="faq.html" >FAQ</a>
+      <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+    </nav>
+  </div>
+</header>
 
-  <main>
+  <main id="main-content">
     <section class="hero container" id="about" aria-labelledby="hero-title">
       <div class="hero-copy">
         <h1 id="hero-title">See Trash? Report it,<br class="desktop-break"> Don't Step Over it.</h1>
@@ -41,25 +43,27 @@
         <article class="info-card step-card"><strong class="step-number">2</strong><h3>Add a Location</h3><p>Tell us the street or Landmark</p></article>
         <article class="info-card step-card"><strong class="step-number">3</strong><h3>Submit and Track</h3><p>Get a reference number and follow progress</p></article>
       </div>
-      <div class="section-heading"><h2>Recent Reports</h2><a href="track.html" class="text-link">Track a report <span aria-hidden="true">→</span></a></div>
+      <div class="section-heading"><h2>Recent Reports</h2><a href="dashboard.html" class="text-link">Open dashboard <span aria-hidden="true">→</span></a></div>
       <div class="report-grid" id="recent-reports" aria-live="polite">
         <article class="info-card recent-card"><img src="assets/overflowing-bin.webp" alt="Overflowing trash bin" width="610" height="458"><div><h3>Overflowing Bin</h3><p>Taft Ave. Near the Corner</p><span class="status-badge status-resolved">Resolved</span></div></article>
         <article class="info-card recent-card"><img src="assets/illegal-dumping.webp" alt="Trash dumped by the roadside" width="458" height="343"><div><h3>Illegal Dumping</h3><p>Taft Ave. beside the drain</p><span class="status-badge status-review">Under Review</span></div></article>
         <article class="info-card recent-card"><img src="assets/market-waste.webp" alt="Garbage bags and discarded market packaging" width="922" height="692"><div><h3>Market Waste</h3><p>Taft Ave. Near the stalls</p><span class="status-badge status-assigned">Assigned</span></div></article>
       </div>
     </section>
-
+    <section class="container home-more" aria-labelledby="why-title">
+      <div class="home-more-card"><div><h2 id="why-title">Cleaner streets start with a report.</h2><p>TaftClean helps citizens record the location, date, and type of unattended waste, then keep a reference number to check progress. This is a classroom prototype—not a connection to city services.</p></div><div class="home-more-links"><a class="btn btn-outline" href="about.html">About TaftClean</a><a class="text-link" href="faq.html">Read common questions →</a></div></div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div><h2>About</h2><a href="index.html#about">What is TaftClean</a><a href="index.html#how-it-works">Our Goal</a></div>
-      <div><h2>Links</h2><a href="report.html">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
-      <div><h2>Project</h2><span>Citizen reporting prototype</span><span>WEBDEV • The Bronx</span></div>
-      <div><h2>Contact</h2><a href="report.html">Submit a report</a><span>Classroom demo only</span></div>
-    </div>
-    <p class="footer-note">TaftClean is a student prototype. Reports are stored in your browser, not sent to a city agency.</p>
-  </footer>
+  <div class="container footer-grid">
+    <div><h2>About</h2><a href="about.html">What is TaftClean</a><a href="about.html#how-it-works">How It Works</a><a href="about.html#our-goal">Our Goal</a></div>
+    <div><h2>Pages</h2><a href="report.html">Report</a><a href="dashboard.html">Dashboard</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
+    <div><h2>Help &amp; policies</h2><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="privacy.html#guidelines">Reporting Guidelines</a></div>
+    <div><h2>Project</h2><span>WEBDEV • The Bronx</span><span>Classroom demonstration only</span><span>Not an official collection service</span></div>
+  </div>
+  <p class="footer-note">TaftClean is a student prototype. Reports are saved on this browser, not sent to local authorities. Please do not submit real personal information.</p>
+</footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

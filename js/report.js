@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
   const fields = {
     email: $('email'), subtype: $('subtype'), description: $('description'),
-    observed: $('observed'), street: $('street'), landmark: $('landmark'), photo: $('photo')
+    observed: $('observed'), street: $('street'), landmark: $('landmark'), bagCount: $('bagCount'), photo: $('photo'), acknowledge: $('acknowledge')
   };
   let selectedPhoto = null;
   let previewURL = null;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function errorFor(name, message) {
     const control = fields[name];
     const errorElement = $(`${name}-error`);
-    if (control && name !== 'photo') control.setAttribute('aria-invalid', message ? 'true' : 'false');
+    if (control) control.setAttribute('aria-invalid', message ? 'true' : 'false');
     if (errorElement) errorElement.textContent = message || '';
   }
   function hasActualText(text) { return /[\p{L}\p{N}]/u.test(text); }
@@ -48,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'landmark':
         if (val && (!api.REGEX.landmark.test(val) || !hasActualText(val))) message = 'Use 3–100 characters; letters, numbers and basic address punctuation only.';
         break;
+      case 'bagCount':
+        if (fields.bagCount.validity.badInput || (val && (!/^[0-9]{1,3}$/.test(val) || Number(val) < 1 || Number(val) > 500))) message = 'Enter a whole number from 1 to 500, or leave this field empty.';
+        break;
+      case 'acknowledge':
+        if (!fields.acknowledge.checked) message = 'Please acknowledge the classroom prototype privacy notice.';
+        break;
       case 'photo':
         if (val && !['image/jpeg', 'image/png'].includes(val.type)) message = 'Only JPG and PNG photos are allowed.';
         else if (val && val.size > FIVE_MB) message = 'File must be 5MB or smaller.';
@@ -57,31 +63,28 @@ document.addEventListener('DOMContentLoaded', () => {
     errorFor(name, message);
     return !message;
   }
-  function validateStep(names) {
+  function validateAll() {
+    const names = ['email', 'subtype', 'description', 'observed', 'street', 'landmark', 'bagCount', 'photo', 'acknowledge'];
     let firstInvalid = null;
+    let failed = 0;
     for (const name of names) {
-      if (!validateField(name) && !firstInvalid) firstInvalid = fields[name];
+      if (!validateField(name)) {
+        failed++;
+        if (!firstInvalid) firstInvalid = fields[name];
+      }
     }
-    if (firstInvalid) {
-      if (firstInvalid === fields.photo) $('photo-drop').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstInvalid.focus();
+    const summary = $('error-summary');
+    summary.hidden = failed === 0;
+    summary.textContent = failed ? `Please correct ${failed} field${failed === 1 ? '' : 's'} marked below before submitting.` : '';
+    if (failed) {
+      summary.focus({ preventScroll: true });
+      firstInvalid?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      firstInvalid?.focus({ preventScroll: true });
       return false;
     }
     return true;
   }
-  function showStep(number) {
-    $('step-one').hidden = number !== 1;
-    $('step-two').hidden = number !== 2;
-    $('form-step-label').textContent = number === 1 ? 'Step 1 of 2 — Report details' : 'Step 2 of 2 — Photo & submission';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (number === 2) $('landmark').focus({ preventScroll: true });
-    else $('email').focus({ preventScroll: true });
-  }
-  $('next-step').addEventListener('click', () => {
-    if (validateStep(['email', 'subtype', 'description', 'observed', 'street'])) showStep(2);
-  });
-  $('previous-step').addEventListener('click', () => showStep(1));
-  ['email', 'subtype', 'description', 'observed', 'street', 'landmark'].forEach(name => {
+  ['email', 'subtype', 'description', 'observed', 'street', 'landmark', 'bagCount'].forEach(name => {
     fields[name].addEventListener('blur', () => {
       if (fields[name].value.trim() || fields[name].getAttribute('aria-invalid') === 'true') validateField(name);
     });
@@ -131,13 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (!validateStep(['email', 'subtype', 'description', 'observed', 'street'])) {
-      showStep(1);
-      // Re-run after step becomes visible so its first invalid field is focusable.
-      validateStep(['email', 'subtype', 'description', 'observed', 'street']);
-      return;
-    }
-    if (!validateStep(['landmark', 'photo'])) return;
+    if (!validateAll()) return;
+    if ($('website').value.trim()) { api.toast('Please try your submission again.'); return; }
     const submitButton = $('submit-report');
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting…';
@@ -147,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         email: fields.email.value.trim(), subtype: fields.subtype.value,
         description: fields.description.value.trim(), observed: fields.observed.value,
         street: fields.street.value.trim(), landmark: fields.landmark.value.trim(),
-        amount: selectedAmount?.value || 'Not specified'
+        amount: selectedAmount?.value || 'Not specified', bagCount: fields.bagCount.value.trim() ? Number(fields.bagCount.value) : null
       });
       if (selectedPhoto) {
         try { await api.savePhoto(report.id, selectedPhoto); }
@@ -167,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
       submitButton.textContent = 'Submit Report';
     }
   });
+  fields.acknowledge.addEventListener('change', () => { if ($('acknowledge-error').textContent) validateField('acknowledge'); });
+  form.addEventListener('reset', () => { window.setTimeout(() => { clearPreview(); $('error-summary').hidden = true; Object.keys(fields).forEach(name => errorFor(name, '')); $('character-count').textContent = '0 / 500'; }, 0); });
   $('copy-reference').addEventListener('click', async () => {
     const reference = $('success-reference').textContent;
     try {

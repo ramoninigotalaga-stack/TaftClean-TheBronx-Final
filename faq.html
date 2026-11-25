@@ -10,38 +10,43 @@
   <script defer src="js/app.js"></script>
 </head>
 <body data-page="faq">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="site-header">
-    <div class="header-inner">
-      <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
-      <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="report.html">Report</a>
-        <a href="track.html">Track</a>
-        <a href="faq.html" aria-current="page">FAQ</a>
-        <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
-      </nav>
-    </div>
-  </header>
-  <main class="faq-page">
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="TaftClean home">TaftClean</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span><span></span></button>
+    <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+      <a href="index.html" >Home</a>
+      <a href="report.html" >Report</a>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="track.html" >Track</a>
+      <a href="faq.html" aria-current="page">FAQ</a>
+      <a class="btn btn-primary nav-report" href="report.html">Report Garbage</a>
+    </nav>
+  </div>
+</header>
+  <main id="main-content" class="faq-page">
     <section class="container faq-section" id="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title">FAQ</h2>
+      <h1 id="faq-title">FAQ</h1>
       <div class="faq-list">
         <details class="faq-item"><summary>Who handles garbage collection? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Garbage collection in real life is handled by the responsible local authorities and their service providers. TaftClean is currently a classroom prototype and does not send reports to government offices.</p></details>
         <details class="faq-item"><summary>How long until my report is reviewed? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Reports submitted to this prototype begin with “Submitted.” You can demonstrate later steps using the tracking page's demo status controls. No official review time is guaranteed.</p></details>
         <details class="faq-item"><summary>Can I report without a photo? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Yes. A photo is helpful but optional. Required details are your email, garbage type, description, date observed, and street or barangay.</p></details>
+        <details class="faq-item"><summary>Can I check my report without an account? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Yes. Keep the reference number displayed after submission and enter it on the Track page. For now, reports only exist in this browser.</p></details>
+        <details class="faq-item"><summary>Who can see my email or photo? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>This local demo does not send reports to an external server. The public dashboard does not display emails. Browser data is still accessible to people using the same browser profile, so avoid real personal information. <a href="privacy.html">Read the privacy policy</a>.</p></details>
+        <details class="faq-item"><summary>How can I avoid submitting the same report twice? <span aria-hidden="true" class="faq-symbol">+</span></summary><p>Save your reference number and use the Track page first. The prototype also blocks obviously repeated reports in the same browser for a short period.</p></details>
       </div>
     </section>
   </main>
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div><h2>About</h2><a href="index.html#about">What is TaftClean</a><a href="index.html#how-it-works">Our Goal</a></div>
-      <div><h2>Links</h2><a href="report.html">Report</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
-      <div><h2>Project</h2><span>Citizen reporting prototype</span><span>WEBDEV • The Bronx</span></div>
-      <div><h2>Contact</h2><a href="report.html">Submit a report</a><span>Classroom demo only</span></div>
-    </div>
-    <p class="footer-note">TaftClean is a student prototype. Reports are stored in your browser, not sent to a city agency.</p>
-  </footer>
+  <div class="container footer-grid">
+    <div><h2>About</h2><a href="about.html">What is TaftClean</a><a href="about.html#how-it-works">How It Works</a><a href="about.html#our-goal">Our Goal</a></div>
+    <div><h2>Pages</h2><a href="report.html">Report</a><a href="dashboard.html">Dashboard</a><a href="track.html">Track</a><a href="faq.html">FAQ</a></div>
+    <div><h2>Help &amp; policies</h2><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a><a href="privacy.html#guidelines">Reporting Guidelines</a></div>
+    <div><h2>Project</h2><span>WEBDEV • The Bronx</span><span>Classroom demonstration only</span><span>Not an official collection service</span></div>
+  </div>
+  <p class="footer-note">TaftClean is a student prototype. Reports are saved on this browser, not sent to local authorities. Please do not submit real personal information.</p>
+</footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

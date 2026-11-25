@@ -8,6 +8,7 @@
   'use strict';
 
   const STORAGE_KEY = 'taftclean_reports_v1';
+  const LAST_SUBMIT_KEY = 'taftclean_last_submit_v1';
   const STATUS_ORDER = ['Submitted', 'Under Review', 'Assigned', 'Resolved'];
   const SUBTYPES = [
     'Overflowing Bin', 'Illegal Dumping', 'Market Waste',
@@ -40,7 +41,7 @@
     }
   ];
 
-  // All regular expressions are centralized for easier professor demonstration.
+  // Shared validation patterns.
   const REGEX = Object.freeze({
     email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
     // 15–500 characters. Supports Filipino letters, numbers and common punctuation.
@@ -103,14 +104,27 @@
     throw new Error('No new reference numbers are available.');
   }
   function createReport(input) {
+    const recent = readSaved();
+    const now = Date.now();
+    const last = Number(localStorage.getItem(LAST_SUBMIT_KEY) || '0');
+    if (now - last < 10000) throw new Error('Please wait 10 seconds before sending another report.');
+    const similar = recent.some(item =>
+      item.subtype === input.subtype &&
+      item.street.trim().toLocaleLowerCase() === input.street.trim().toLocaleLowerCase() &&
+      item.observed === input.observed &&
+      item.description.trim().toLocaleLowerCase() === input.description.trim().toLocaleLowerCase() &&
+      now - Date.parse(item.createdAt) < 30 * 60 * 1000
+    );
+    if (similar) throw new Error('This appears to be a duplicate report submitted in this browser in the last 30 minutes. Track your existing report instead.');
     const report = {
       id: generateReference(), email: input.email, subtype: input.subtype,
       description: input.description, observed: input.observed,
       street: input.street, landmark: input.landmark,
-      amount: input.amount, status: 'Submitted', image: '', sample: false,
+      amount: input.amount, bagCount: input.bagCount, status: 'Submitted', image: '', sample: false,
       createdAt: new Date().toISOString()
     };
-    writeSaved([...readSaved(), report]);
+    writeSaved([...recent, report]);
+    try { localStorage.setItem(LAST_SUBMIT_KEY, String(now)); } catch { /* report itself was saved successfully */ }
     return report;
   }
   function updateReportStatus(id, status) {
@@ -194,7 +208,7 @@
     menu.addEventListener('click', event => { if (event.target.closest('a')) close(); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
     document.addEventListener('click', event => { if (!menu.contains(event.target) && !button.contains(event.target)) close(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 700) close(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 800) close(); });
   }
   function elementWithText(tag, className, text) {
     const element = document.createElement(tag);
